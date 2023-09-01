@@ -2,6 +2,27 @@ import joblib
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
+import sqlite3
+
+# Данные соберем в базу данных
+connection = sqlite3.connect('database.db')
+cursor = connection.cursor()
+cursor.executescript("""CREATE TABLE IF NOT EXISTS base (url TEXT PRIMARY KEY,
+                                                 date_app TEXT,
+                                                 date_update TEXT,
+                                                 note TEXT,
+                                                 apartment_type TEXT,
+                                                 neighborhood TEXT,
+                                                 street TEXT,
+                                                 house  INTEGER, 
+                                                 floor TEXT, 
+                                                 layout TEXT,
+                                                 total_area FLOAT,
+                                                 living_area FLOAT,
+                                                 kitchen_area FLOAT,
+                                                 price INTEGER,
+                                                 views INTEGER);""")
+
 
 # Собираем ссылки на объявления
 def get_href_value(url):
@@ -17,15 +38,15 @@ def get_href_value(url):
 
 # Достаем инфо из объявления
 def get_info(urls):
-    ads = {}
+    ads = []
     for line in urls:
         url = f'http://citystar.ru/{line}'
         res = requests.get(url)
         content = res.content
         soup = BeautifulSoup(content, "html.parser")
         fonts = [el.text for el in soup.find_all('font', class_='fin')]
-        ads[url] = [fonts[1], fonts[3], fonts[5], fonts[7], fonts[9], fonts[11], fonts[13], fonts[15], fonts[17], fonts[19],
-            fonts[21], fonts[23], fonts[25], fonts[-1]]
+        ads.append([url, fonts[1], fonts[3], fonts[5], fonts[7], fonts[9], fonts[11], fonts[13], fonts[15], fonts[17],
+                    fonts[19], fonts[21], fonts[23], fonts[25], fonts[-1]])
     return ads
 
 links = []
@@ -37,3 +58,11 @@ for end in ['', '&pN=2', '&pN=3', '&pN=4']:
 urls = np.array(links).flatten()
 result = get_info(urls)
 joblib.dump(result, 'result.pkl')
+
+for url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout, total_area, living_area, kitchen_area, price, views in res:
+    cursor.execute("""INSERT INTO base (url, date_app, date_update, note, apartment_type, neighborhood, 
+                    street, house, floor, layout, total_area, living_area,kitchen_area, price, 
+                    views) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout,
+                    total_area, living_area,kitchen_area, price, views))
+connection.commit()
