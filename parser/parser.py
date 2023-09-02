@@ -57,9 +57,9 @@ for end in ['', '&pN=2', '&pN=3', '&pN=4']:
 
 urls = np.array(links).flatten()
 result = get_info(urls)
-joblib.dump(result, 'result.pkl')
+#joblib.dump(result, 'result.pkl')
 
-for url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout, total_area, living_area, kitchen_area, price, views in res:
+for url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout, total_area, living_area, kitchen_area, price, views in result:
     cursor.execute("""INSERT INTO base (url, date_app, date_update, note, apartment_type, neighborhood, 
                     street, house, floor, layout, total_area, living_area,kitchen_area, price, 
                     views) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
