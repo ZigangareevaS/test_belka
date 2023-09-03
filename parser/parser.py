@@ -7,7 +7,7 @@ import sqlite3
 # Данные соберем в базу данных
 connection = sqlite3.connect('database.db')
 cursor = connection.cursor()
-cursor.executescript("""CREATE TABLE IF NOT EXISTS base (url TEXT PRIMARY KEY,
+cursor.executescript("""CREATE TABLE IF NOT EXISTS base (url TEXT,
                                                  date_app TEXT,
                                                  date_update TEXT,
                                                  note TEXT,
@@ -61,7 +61,7 @@ result = get_info(urls)
 
 for url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout, total_area, living_area, kitchen_area, price, views in result:
     cursor.execute("""INSERT INTO base (url, date_app, date_update, note, apartment_type, neighborhood, 
-                    street, house, floor, layout, total_area, living_area,kitchen_area, price, 
+                    street, house, floor, layout, total_area, living_area, kitchen_area, price, 
                     views) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (url, date_app, date_update, note, apartment_type, neighborhood, street, house, floor, layout,
                     total_area, living_area,kitchen_area, price, views))
