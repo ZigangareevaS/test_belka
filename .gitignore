@@ -2,3 +2,4 @@
 data/
 .ipynb_checkpoints/
 database.db
+best_model.pkl
