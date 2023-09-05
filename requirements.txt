@@ -1,5 +1,5 @@
 annotated-types==0.5.0
-anyio @ file:///C:/ci/anyio_1644481856696/work/dist
+anyio==3.7.1
 argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
 argon2-cffi-bindings @ file:///C:/ci/argon2-cffi-bindings_1644569876605/work
 asttokens @ file:///opt/conda/conda-bld/asttokens_1646925590279/work
@@ -25,9 +25,12 @@ decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 docopt==0.6.2
 entrypoints @ file:///C:/ci/entrypoints_1649926676279/work
+exceptiongroup==1.1.3
 executing @ file:///opt/conda/conda-bld/executing_1646925071911/work
+fastapi==0.103.1
 fastjsonschema @ file:///C:/Users/BUILDE~1/AppData/Local/Temp/abs_ebruxzvd08/croots/recipe/python-fastjsonschema_1661376484940/work
 fonttools==4.42.1
+h11==0.14.0
 idna @ file:///C:/b/abs_bdhbebrioa/croot/idna_1666125572046/work
 ipykernel @ file:///C:/b/abs_07rkft_vaz/croot/ipykernel_1691121700587/work
 ipython @ file:///C:/b/abs_254uk73z5b/croot/ipython_1691532131313/work
@@ -98,6 +101,7 @@ spacy-legacy==3.0.12
 spacy-loggers==1.0.4
 srsly==2.4.7
 stack-data @ file:///opt/conda/conda-bld/stack_data_1646927590127/work
+starlette==0.27.0
 terminado @ file:///C:/b/abs_25nakickad/croot/terminado_1671751845491/work
 thinc==8.1.12
 threadpoolctl==3.2.0
@@ -109,6 +113,7 @@ typer==0.9.0
 typing_extensions @ file:///C:/b/abs_213vg2cd1l/croot/typing_extensions_1690297804941/work
 tzdata==2023.3
 urllib3==2.0.4
+uvicorn==0.23.2
 wasabi==1.1.2
 wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
 webencodings==0.5.1
